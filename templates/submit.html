@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>    
+    <title>review</title>    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
+
+</head>
+    <div class="search-wrapper">
+        <div class="input-holder">            
+            <form method="GET" action="/calculate">
+                <input type="text" class="search-input"  placeholder="Type to search" name="char1" />                       
+            
+                <button class="search-icon" id="btn1" type="submit"><span></span></button>            
+            </form> 
+            
+        </div>     
+        <br>   
+        <br>   
+        <br>   
+        <div class="container"> 
+            <center>
+                <div>
+                    {{result}}<br>{{result2}}
+                </div>
+            </center>
+         </div>     
+    </div>  
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="{{url_for('static',filename='script.js')}}"></script>
+</html>
