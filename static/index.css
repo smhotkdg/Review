@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+
+}
+
+.fileContainer{
+    text-align: center;
+}
+
+.fileUpload{
+    display: none;
+}
