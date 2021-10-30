@@ -9,9 +9,18 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="fileContainer">
-            <input class="fileUpload" type="file" />
-        </div>
+        <section class="fileContainer">
+            <input id="fileUpload" type="file" />
+            <img class="uploadImage" src="../static/images/folder.png" alt="파일업로드" onclick="document.all.fileUpload.click(); document.all.fileUpload2.value=document.all.fileUpload.value">
+            <input id="fileUpload2" type="text" placeholder="파일 업로드" readonly />
+        </section>
+        <section class="resultContainer">
+            <div class="nagative ninety"></div>
+            <div class="nagative eighty"></div>
+            <div class="nagative seventy"></div>
+            <div class="nagative sixty"></div>
+            <div class="nagative fifty"></div>
+        </section>
     </div>
 </body>
 </html>
