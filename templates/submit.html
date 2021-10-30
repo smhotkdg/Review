@@ -8,7 +8,7 @@
 </head>
     <div class="search-wrapper">
         <div class="input-holder">            
-            <form method="GET" action="/calculate">
+            <form method="GET" action="/reviewanalysis">
                 <input type="text" class="search-input"  placeholder="Type to search" name="char1" />                       
             
                 <button class="search-icon" id="btn1" type="submit"><span></span></button>            
@@ -38,7 +38,9 @@
             <li>{{result_review_value[i]}}</li>
         {%endfor%}
           
-        </ol>
+    </ol>
+    <form method="GET" action="/serchpercent">
+        <input type="text" class="search-Percent"  placeholder="Type to search" name="charPercet" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="{{url_for('static',filename='script.js')}}"></script>
 </html>
