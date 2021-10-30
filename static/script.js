@@ -14,7 +14,6 @@ function searchToggle(obj, evt){
             
         }
 }
-
 window.onload = function() { // window.addEventListener('load', (event) => {와 동일합니다.
     
     searchToggle($("#btn1"))

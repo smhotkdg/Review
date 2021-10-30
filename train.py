@@ -80,11 +80,11 @@ model.compile(optimizer=optimizers.RMSprop(lr=0.001),
              loss=losses.binary_crossentropy,
              metrics=[metrics.binary_accuracy])
 
-model.fit(x_train, y_train, epochs=100, batch_size=512)
+model.fit(x_train, y_train, epochs=20, batch_size=512)
 results = model.evaluate(x_test, y_test)
 
 # Save the entire model to a HDF5 file
-model.save('../my_model.h5')
+model.save('../review_model2.h5')
 
 def predict_pos_neg(review):
     token = tokenize(review)
@@ -96,4 +96,4 @@ def predict_pos_neg(review):
     else:
         print("[{}]는 {:.2f}% 확률로 부정 리뷰\n".format(review, (1 - score) * 100))
 
-predict_pos_neg("올해 최고의 영화!")
+predict_pos_neg("숙성 시키다가 다 썩었어요 ㅠ")
