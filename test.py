@@ -57,7 +57,7 @@ def term_frequency(doc):
     return [doc.count(word) for word in selected_words]
 
 # Save the entire model to a HDF5 file
-model= models.load_model("../my_model.h5")
+model= models.load_model("../review_model2.h5")
 def predict_pos_neg(review):
     #start = time.time()
     token = tokenize(review)
@@ -76,10 +76,10 @@ def predictWeb(review):
     tf = term_frequency(token)
     data = np.expand_dims(np.asarray(tf).astype('float32'), axis=0)    
     score = float(model.predict(data))
-    if(score > 0.5):
-        return ("["+review+"]"),  ("{:.2f}% 확률로 긍정 리뷰".format(score * 100))        
-    else:
-        return ("["+review+"]"),  ("{:.2f}% 확률로 부정 리뷰".format((1-score) * 100))
+    # if(score > 0.5):
+    #     return ("["+review+"]"),  ("{:.2f}%".format(score * 100))        
+    # else:
+    return ("["+review+"]"),  round((1-score) * 100,3)
     #print(time.time()-start)
 predict_pos_neg("맛있어요")
 predict_pos_neg("^^")

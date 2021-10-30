@@ -24,8 +24,21 @@
                     {{result}}<br>{{result2}}
                 </div>
             </center>
-         </div>     
-    </div>  
+         </div>              
+    </div>     
+    <form action = "http://localhost:8080/uploader" method = "POST"
+          enctype = "multipart/form-data">
+      <input type = "file" name = "file" />
+      <input type = "submit"/>
+    </form>
+    <ol>
+        <!-- For loop logic of jinja template -->
+        {%for i in range(0, len)%}
+          
+            <li>{{result_review_value[i]}}</li>
+        {%endfor%}
+          
+        </ol>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="{{url_for('static',filename='script.js')}}"></script>
 </html>
