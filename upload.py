@@ -69,7 +69,7 @@ def KeywordCheck():
 
 @app.route('/testFunction', methods=['GET', 'POST'])
 def testFunction(inputData):        
- 
+    #push test
     
     return render_template('submit.html',flash_message="True",flaskvar = inputData,range = CompareNumber)
 
