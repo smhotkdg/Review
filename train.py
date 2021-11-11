@@ -45,17 +45,23 @@ else:
     with open('../test_docs.json', 'w', encoding="utf-8") as make_file:
         json.dump(test_docs, make_file, ensure_ascii=False, indent="\t")
 
+print("setTokens")
 tokens = [t for d in train_docs for t in d[0]]
 text = nltk.Text(tokens, name='NMSC')
-
+print("endTokens")
 
 selected_words = [f[0] for f in text.vocab().most_common(10000)]
 
-def term_frequency(doc):
+def term_frequency(doc):    
     return [doc.count(word) for word in selected_words]
 
+
+print("set train_x")
 train_x = [term_frequency(d) for d, _ in train_docs]
+print("end train_x")
+print("set test_x")
 test_x = [term_frequency(d) for d, _ in test_docs]
+print("end test_x")
 train_y = [c for _, c in train_docs]
 test_y = [c for _, c in test_docs]
 
@@ -80,11 +86,11 @@ model.compile(optimizer=optimizers.RMSprop(lr=0.001),
              loss=losses.binary_crossentropy,
              metrics=[metrics.binary_accuracy])
 
-model.fit(x_train, y_train, epochs=20, batch_size=512)
+model.fit(x_train, y_train, epochs=10, batch_size=512)
 results = model.evaluate(x_test, y_test)
 
 # Save the entire model to a HDF5 file
-model.save('../review_model2.h5')
+model.save('../review_model8.h5')
 
 def predict_pos_neg(review):
     token = tokenize(review)
@@ -94,6 +100,6 @@ def predict_pos_neg(review):
     if(score > 0.5):
         print("[{}]는 {:.2f}% 확률로 긍정 리뷰\n".format(review, score * 100))
     else:
-        print("[{}]는 {:.2f}% 확률로 부정 리뷰\n".format(review, (1 - score) * 100))
+        print("[{}]는 {:.2f}% 확률로 부정 리뷰\n".format(review, (1 - score) * 100)) 
 
 predict_pos_neg("숙성 시키다가 다 썩었어요 ㅠ")

@@ -16,7 +16,8 @@ file_rating_train_Best = open('../ratings_train_reviewBest.txt', 'at',encoding='
 
 negativeCount=0
 positiveCount =0
-for i in range(27):
+count =0
+for i in range(32):
     strFileNumber = str(i+1)
     f = open('D:/reviewData/review_10/'+strFileNumber+'.csv','r',encoding='UTF8')
     rdr = csv.reader(f)
@@ -24,24 +25,31 @@ for i in range(27):
         line_pov = "0"
         line_content = ""    
         positiveCount+=1
+        count+=1
         if(line[2]=="Normal"):            
             #countPositive = file_len('../ratings_train_reviewPositive.txt')
             line_pov = "1"    
             strLine =line[1].replace("\n"," ")
             strLine = re.sub(' +', ' ', strLine)
-            line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            #line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            strLine = strLine.lstrip()
+            line_content =str(count)+"\t"+strLine+"\t"+line_pov+"\n"
             file_rating_train_Positive.write(line_content)
         elif(line[2]=="Best"):
             line_pov = "0"    
             strLine =line[1].replace("\n"," ")
             strLine = re.sub(' +', ' ', strLine)
-            line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            strLine = strLine.lstrip()
+            #line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            line_content =str(count)+"\t"+strLine+"\t"+line_pov+"\n"
             file_rating_train_Best.write(line_content)
         else:
             strLine =line[1].replace("\n"," ")
             strLine = re.sub(' +', ' ', strLine)
+            strLine = strLine.lstrip()
             #countNegative = file_len('../ratings_train_reviewNegative.txt')            
-            line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            #line_content =str(positiveCount)+"\t"+strLine+"\t"+line_pov+"\n"
+            line_content =str(count)+"\t"+strLine+"\t"+line_pov+"\n"
             file_rating_train_negative.write(line_content)
         
 f.close()

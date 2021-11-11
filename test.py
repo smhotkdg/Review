@@ -57,7 +57,7 @@ def term_frequency(doc):
     return [doc.count(word) for word in selected_words]
 
 # Save the entire model to a HDF5 file
-model= models.load_model("../review_model2.h5")
+model= models.load_model("../review_model8.h5")
 def predict_pos_neg(review):
     #start = time.time()
     token = tokenize(review)
@@ -79,33 +79,61 @@ def predictWeb(review):
     # if(score > 0.5):
     #     return ("["+review+"]"),  ("{:.2f}%".format(score * 100))        
     # else:
-    return ("["+review+"]"),  round((1-score) * 100,3)
+    
+    #print(("["+review+"]"),  round((1-score) * 100))
+    return review,  round((1-score) * 100)
     #print(time.time()-start)
-predict_pos_neg("맛있어요")
-predict_pos_neg("^^")
-predict_pos_neg("배송이 느려요")
-predict_pos_neg("배송이 빨라요")
-predict_pos_neg("맛없어요")
-predict_pos_neg("싱싱해요")
-predict_pos_neg("상했어요")
-predict_pos_neg("뭐.....")
-predict_pos_neg("무난")
-predict_pos_neg("애호박이 얼어서 왔네요")
-predict_pos_neg("애호박이 얼어서 개짱나네")
-predict_pos_neg("개꿀맛")
-predict_pos_neg("ㅗㅗ")
-predict_pos_neg("야채는 싱싱함이 최고죠")
-predict_pos_neg("휘뚜루 마뚜루")
-predict_pos_neg("콩나물이 다 물러지고 상한 냄새 나서 못 먹었어요")
-predict_pos_neg("가성비 짱")
-predict_pos_neg("아쉬워요")
-predict_pos_neg("이런상태로?")
-predict_pos_neg("냄새 안난다는 평보고 샀는데 입맛 까다롭지 않은 남편도 누린내 난다하네요.저는 냄새에 좀 민감해서 누린내 안나게 할려고 깻잎도 넣고 청량도 하나 넣었는데ㅠ")
-predict_pos_neg("조리할 때 짤까봐 물을 좀 부어서 그런건지는 모르겠지만 고기 누린내가 많이나서 후추를 뿌려서 먹었어요. 다음엔 안시켜먹을 것 같네요. 고기 양은 많았습니다.")
-predict_pos_neg("매웠어요. 애들이먹기에는")
-predict_pos_neg("으로 먹기 좋아요 거의 매번 사는 것 같네요")
-predict_pos_neg("후기도 좋고 고구마 치즈 조합 좋아해서 사봤어요")
-predict_pos_neg("2개 샀는데 1개 먹고 그냥저냥인 것 같아.. 1개는 계속 냉동실에 있어요 ㅠ")
-predict_pos_neg("컬리 돌 바나나 저렴하고 달아서 자주 구매해요.이번엔 첨으로 비닐포장도 없이 왔네요 ㅡㅡ좀 덜 싱싱해보이고 비닐포장도 없어 좀 찜찜하지만,믿습니다.")
-predict_pos_neg("남편은 맵다고 하는데,저는 딱 좋았어요")
-predict_pos_neg("바나나 처음 시켜보는데 안익은거 보내주시네요 ㅠㅠ바로 먹고 싶었는데 익는동안 다른거 사먹어야 할듯요")
+
+# files = open('../trainData/test.txt', 'r',encoding='UTF8')
+
+# while True:
+#     line = files.readline()
+#     if not line: break    
+#     print(predictWeb(line))    
+# files.close()
+# Negative_equal = open('../Negative_equal.txt', 'at',encoding='UTF8')
+# Negative_Not_equal = open('../Negative_Not_equal.txt', 'at',encoding='UTF8')
+
+# Positive_equal = open('../Positive_equal.txt', 'at',encoding='UTF8')
+# Positive_Not_equal = open('../Positive_Not_equal.txt', 'at',encoding='UTF8')
+
+# file_Natative = open('../ratings_train_reviewNegative.txt', 'r',encoding='UTF8')
+# file_Positive = open('../ratings_train_reviewPositive.txt', 'r',encoding='UTF8')
+
+
+# lines = file_Natative.readlines()
+# count =0
+# for line in lines:    
+#     strLine =line.replace("\t","")
+#     strLine =line.replace("0","")    
+#     new_string = strLine[1:]
+#     review,percent = predictWeb(new_string)
+#     count+=1    
+  
+#     #print("======"+str(count) +"=====")
+#     if(percent>70):
+#         print("======"+str(count) +"===== Negative Equal")
+#         Negative_equal.write(new_string)        
+#     else:
+#         print("======"+str(count) +"===== Negative Not Equal")
+#         Negative_Not_equal.write(new_string)
+# Negative_Not_equal.close()
+# Negative_equal.close()
+# file_Natative.close()
+# Positvelines = file_Positive.readlines()
+# for line in Positvelines:   
+#     strLine =line.replace("\t","")
+#     strLine =line.replace("1","")
+#     review,percent = predictWeb(strLine)
+
+#     count+=1  
+#     #print("======"+str(count) +"=====")
+#     if(percent<=1):
+#         print("======"+str(count) +"===== Positive Equal")
+#         Positive_equal.write(strLine)
+#     else:
+#         print("======"+str(count) +"===== Positive Not Equal")
+#         Positive_Not_equal.write(strLine)
+# Positive_equal.close()
+# Positive_Not_equal.close()
+# file_Positive()

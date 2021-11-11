@@ -1,46 +1,115 @@
-<!DOCTYPE html>
-
 <html>
-<head>    
-    <title>review</title>    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
+<title>
+  ROCKET GRAB
+</title>
+<head>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
+  <script src="../static/jquery.paginate.js"></script>
+  <link rel="stylesheet" href="../static/jquery.paginate.css">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
-    <div class="search-wrapper">
-        <div class="input-holder">            
-            <form method="GET" action="/reviewanalysis">
-                <input type="text" class="search-input"  placeholder="Type to search" name="char1" />                       
-            
-                <button class="search-icon" id="btn1" type="submit"><span></span></button>            
-            </form> 
-            
-        </div>     
-        <br>   
-        <br>   
-        <br>   
-        <div class="container"> 
-            <center>
-                <div>
-                    {{result}}<br>{{result2}}
-                </div>
-            </center>
-         </div>              
-    </div>     
-    <form action = "http://localhost:8080/uploader" method = "POST"
-          enctype = "multipart/form-data">
-      <input type = "file" name = "file" />
-      <input type = "submit"/>
+<container>
+  <div>
+
+  </div>
+  <h1>
+    <form id=form action="/uploader" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <input type="submit" class = "btnsubmit" />
     </form>
-    <ol>
-        <!-- For loop logic of jinja template -->
-        {%for i in range(0, len)%}
-          
-            <li>{{result_review_value[i]}}</li>
-        {%endfor%}
-          
-    </ol>
-    <form method="GET" action="/serchpercent">
-        <input type="text" class="search-Percent"  placeholder="Type to search" name="charPercet" />
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="{{url_for('static',filename='script.js')}}"></script>
+    <form id=form action = "/keywordCheck" method = "POST"
+          enctype = "multipart/form-data">
+        <textarea name='keyworkdArea'></textarea></br>
+      <button>키워드 체크</button>
+    </form>
+    <form id=form action = "/testFunction2" method = "POST"
+          enctype = "multipart/form-data">        
+      <button>테스트</button>
+    </form>
+  </h1>
+  <h1>
+    <h2 id = "infoTitle">ROCKET GRAB      </h2>
+      <form class= formRage action ="/setRange" method = "POST" enctype = "multipart/form-data">
+      <div >{{range}}% 이상</div>
+      <textarea class="rangeArea" name='setRangeArea'></textarea></br>
+        <button>범위 설정</button>
+      </form>    
+    
+    
+    
+    <details>
+      <summary class="success" id =pageClass90>90 % ↑ ( 0 / 0 )</summary>
+      <ul id="page90">        
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass80>80 % ↑ ( 0 / 0 )</summary>
+      <ul id="page80">       
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass70>70 % ↑ ( 0 / 0 )</summary>
+      <ul id="page70">        
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass60>60 % ↑ ( 0 / 0 )</summary>
+      <ul id="page60">       
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass50>50 % ↑ ( 0 / 0 )</summary>
+      <ul id="page50">       
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass40>40 % ↑ ( 0 / 0 )</summary>
+      <ul id="page40">        
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass30>30 % ↑ ( 0 / 0 )</summary>
+      <ul id="page30">       
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass20>20 % ↑ ( 0 / 0 )</summary>
+      <ul id="page20">       
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass10>10 % ↑ ( 0 / 0 )</summary>
+      <ul id="page10">        
+      </ul>
+    </details>
+    <details>
+      <summary class="success" id =pageClass00>0 % ↑ ( 0 / 0 )</summary>
+      <ul id="page00">        
+      </ul>
+    </details>
+</container>
+<script src="{{url_for('static',filename='script.js')}}"></script>  
+<body onload="flashMessage()">
+    
+  <script>            
+      function flashMessage() {            
+          if ("{{ flash_message }}" == "True") {                 
+              //addReview_compare()
+              {% if flaskvar is defined and flaskvar %}
+                var myVariable = {{ flaskvar | tojson }};
+                addReview_compare(myVariable,{{range}})
+              {% endif %}
+          }
+      }        
+  </script>      
+</body> 
+<script>  
+  
+</script>
+<label id ="labelTest"></label>    
+<img src="../static/white.png" id="loadingContainer">          
+
+<img src="../static/loading.gif" id="loadingContainerGif">    
 </html>
